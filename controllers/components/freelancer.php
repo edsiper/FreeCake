@@ -42,6 +42,8 @@ class FreelancerComponent extends Object {
     $this->Notification = new FreelancerNotification($lib);
     $this->Project = new FreelancerProject($lib);
     $this->Message = new FreelancerMessage($lib);
+
+    $this->lib = $lib;
   }
 }
 
