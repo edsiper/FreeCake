@@ -15,11 +15,11 @@ $path = getcwd().'/../vendors/freelancer/';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 /* Import Freelancer vendor library */
-App::import('Vendor', 'Freelancer', array('file' => 'freelancer/SnowTigerLib.php'));
+App::import('Vendor', 'Freecake', array('file' => 'freecake/SnowTigerLib.php'));
 
-class FreelancerComponent extends Object {
+class FreecakeComponent extends Object {
 
-  function FreelancerComponent() {
+  function FreecakeComponent() {
   }
 
   function init($token = null, $verifier = null) {
