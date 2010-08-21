@@ -163,4 +163,43 @@ class FreelancerComponent extends Object {
     return $this->lib->getTerms();
   }
 
+  /* Payment methods */
+
+  function get_account_balance_status() {
+    return $this->lib->getAccountBalanceStatus();
+  }
+
+  function get_account_transaction_list($param = array()) {
+    return $this->lib->getAccountTransactionList($param);
+  }
+
+  function request_withdrawal($param = array()) {
+    return $this->lib->requestWithdrawal($param);
+  }
+
+  function create_milestone_payment($param = array()) {
+    return $this->lib->createMilestonePayment($param);
+  }
+
+  function transfer_money($param = array()) {
+    return $this->lib->transferMoney($param);
+  }
+
+  function request_cancel_withdrawal($withdrawal_id) {
+    return $this->lib->requestCancelWithdrawal($withdrawal_id);
+  }
+
+  function cancel_milestone($transaction_id) {
+    return $this->lib->cancelMilestone($transaction_id);
+  }
+
+  function get_account_milestone_list($type = 'Incoming', $count = 50, $page = 0) {
+    return $this->lib->getAccountMilestoneList($type, $count, $page);
+  }
+
+  function get_account_withdrawal_list($type = 'Incoming', $count = 50, $page = 0) {
+    return $this->lib->getAccountWithdrawalList($type, $count, $page);
+  }
+
+  
 }
