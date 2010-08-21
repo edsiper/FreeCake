@@ -201,5 +201,28 @@ class FreelancerComponent extends Object {
     return $this->lib->getAccountWithdrawalList($type, $count, $page);
   }
 
-  
+  function request_release_milestone($transaction_id) {
+    return $this->lib->requestReleaseMilestone($transaction_id);
+  }
+
+  function release_milestone($transaction_id, $fullname) {
+    return $this->lib->releaseMilestone($transaction_id, $fullname);
+  }
+
+  function prepare_transfer($project_id, $amount, $to_user_id, $reason_type = 'full') {
+    return $this->lib->prepareTransfer($project_id, $amount, $to_user_id, $reason_type);
+  }
+
+  function get_balance() {
+    return $this->lib->getBalance();
+  }
+
+  function get_project_list_for_transfer() {
+    return $this->lib->getProjectListForTransfer();
+  }
+
+  function get_withdrawal_fees() {
+    return $this->lib->getWithdrawalFees();
+  }
+
 }
