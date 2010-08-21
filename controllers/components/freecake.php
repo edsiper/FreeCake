@@ -20,6 +20,7 @@ App::import('Vendor', 'Freecake', array('file' => 'freecake/SnowTigerLib.php'));
 class FreecakeComponent extends Object {
 
   function FreecakeComponent() {
+    
   }
 
   function init($token = null, $verifier = null) {
@@ -116,6 +117,10 @@ class FreelancerJob extends FreelancerBase {
 
 /* Profile class/methods */
 class FreelancerProfile extends FreelancerBase {
+
+  function get_account_details() {
+    return $this->lib->getAccountDetails()->getArrayData();
+  }
 
   function get_profile_info($userid) {
     return $this->lib->getProfileInfo($userid)->getArrayData();

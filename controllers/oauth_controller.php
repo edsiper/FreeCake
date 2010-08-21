@@ -19,11 +19,11 @@ class OauthController extends AppController {
 
       /* variables */
       $this->set('freelancer_logged', False);
-      $this->set('auth_url', $this->Freelancer->Auth->get_auth_url());
+      $this->set('auth_url', $this->Freecake->Auth->get_authorize_url());
     }
     else {
       $this->set('freelancer_logged', True);
-      $this->redirect(array('controller' => 'Users', 'action' => 'index'));
+      $this->redirect(array('controller' => 'example', 'action' => 'index'));
     }
   }
   
@@ -45,14 +45,14 @@ class OauthController extends AppController {
 
     /* Init for private access */
     $token = $this->Session->read('token');
-    $this->Freelancer->init($token['oauth_token'], $token['oauth_token_secret']);
+    $this->Freecake->init($token['oauth_token'], $token['oauth_token_secret']);
 
     $verifier = $this->params['url']['oauth_verifier'];
 
     /* access key */
-    $access_key = $this->Freelancer->Auth->get_access_key($verifier);
+    $access_key = $this->Freecake->Auth->get_access_key($verifier);
     $this->Session->write('access_key', $access_key);
-    $this->redirect(array('controller' => 'Users', 'action' => 'index'));
+    $this->redirect(array('controller' => 'example', 'action' => 'index'));
   }
 
   function nocallback() {

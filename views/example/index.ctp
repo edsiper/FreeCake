@@ -1,10 +1,11 @@
 <?
 
-if ($logged == True) {
-  echo "User logged";
-}
-else {
-  echo "No user session found.".$html->link("Start authentication process",
-                                            array('controller' => 'Oauth', 
-                                                  'action' => 'index'));
-}
+echo "<h1>Welcome ".$user_info['fullname']."</h1>";
+
+echo "<br>".$html->link('Click here to close your session',
+                        array('controller' => 'Oauth', 'action' => 'logout'));
+
+echo "<br><br>";
+echo "Your username is <b>".$user_info['username']."</b> and your GAF ID is <b>".$user_info['userid']."</b><br><br>";
+
+debug($user_info);
