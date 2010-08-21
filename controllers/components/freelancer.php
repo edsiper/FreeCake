@@ -259,5 +259,28 @@ class FreelancerComponent extends Object {
     return $this->lib->postPublicMessage($param);
   }
 
-  
+  /* Message methods */
+  function get_inbox_messages($param = array()) {
+    return $this->lib->getInboxMessages($param);
+  }
+
+  function get_sent_messages($param = array()) {
+    return $this->lib->getSentMessages($param);
+  }
+
+  function get_unread_count() {
+    return $this->lib->getUnreadCount();
+  }
+
+  function send_message($param = array()) {
+    return $this->lib->sendMessage($param);
+  }
+
+  function mark_message_as_read($id) {
+    return $this->lib->markMessageAsRead($id);
+  }
+
+  function load_message_thread($param = array()) {
+    return $this->lib->loadMessageThread($param);
+  }
 }
