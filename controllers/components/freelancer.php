@@ -225,4 +225,12 @@ class FreelancerComponent extends Object {
     return $this->lib->getWithdrawalFees();
   }
 
+  /* Notification methods */
+  function get_notification() {
+    return $this->lib->getNotification();
+  }
+
+  function get_news() {
+    return $this->lib->getNews();
+  }
 }
