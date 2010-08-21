@@ -233,4 +233,31 @@ class FreelancerComponent extends Object {
   function get_news() {
     return $this->lib->getNews();
   }
+
+  /* Project methods */
+  function search_projects($param = array()) {
+    return $this->lib->searchProjects($param = array());
+  }
+
+  function get_project_fees() {
+    return $this->lib->getProjectFees();
+  }
+
+  function get_project_details($project_id) {
+    return $this->lib->getProjectDetails($project_id);
+  }
+
+  function get_bids_details($project_id) {
+    return $this->lib->getBidsDetails($project_id);
+  }
+
+  function get_public_messages($project_id) {
+    return $this->lib->getPublicMessages($project_id);
+  }
+
+  function post_public_message($param = array()) {
+    return $this->lib->postPublicMessage($param);
+  }
+
+  
 }
