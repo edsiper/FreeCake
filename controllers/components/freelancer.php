@@ -18,17 +18,41 @@ set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 App::import('Vendor', 'Freelancer', array('file' => 'freelancer/SnowTigerLib.php'));
 
 class FreelancerComponent extends Object {
+
   function FreelancerComponent() {
   }
 
   function init($token = null, $verifier = null) {
     if ($token != null && $verifier != null) {
-      $this->lib = new SnowTigerLib($token, $verifier);
+      $lib = new SnowTigerLib($token, $verifier);
     }
     else {
-      $this->lib = new SnowTigerLib();
+      $lib = new SnowTigerLib();
     }
+
+    /* Subclasses for organized Freelancer.com API methods */
+    $this->Auth = new FreelancerAuth($lib);
+    $this->User = new FreelancerUser($lib);
+    $this->Job  = new FreelancerJob($lib);
+    $this->Profile = new FreelancerProfile($lib);
+    $this->Employer = new FreelancerEmployer($lib);
+    $this->Freelancer = new FreelancerFreelancer($lib);
+    $this->Common = new FreelancerCommon($lib);
+    $this->Payment = new FreelancerPayment($lib);
+    $this->Notification = new FreelancerNotification($lib);
+    $this->Project = new FreelancerProject($lib);
+    $this->Message = new FreelancerMessage($lib);
   }
+}
+
+class FreelancerBase {
+  function FreelancerBase($library) {
+    $this->lib = $library;
+  }
+}
+
+/* Auth class/methods */
+class FreelancerAuth extends FreelancerBase {
 
   /* Auth methods */
   function get_access_key($oauth_verifier) {
@@ -50,8 +74,10 @@ class FreelancerComponent extends Object {
   function get_request_access_token($oauth_verifier = '') {
     return $this->lib->getRequestAccessToken($oauth_verifier);
   }
+}
 
-  /* User methods */
+/* User class/methods */
+class FreelancerUser extends FreelancerBase {
   function get_users_by_search($param = array()) {
     return $this->lib->getUsersBySearch($param)->getArrayData();
   }
@@ -67,8 +93,11 @@ class FreelancerComponent extends Object {
   function get_user_details($param = array()) {
     return $this->lib->getUserDetails($param)->getArrayData();
   }
+}
 
-  /* Job Methods */
+/* Job class/methods */
+class FreelancerJob extends FreelancerBase {
+
   function get_job_list() {
     return $this->lib->getJobList()->getArrayData();
   }
@@ -81,16 +110,23 @@ class FreelancerComponent extends Object {
     return $this->lib->getCategoryJobList()->getArrayData();
   }
 
+}
+
+/* Profile class/methods */
+class FreelancerProfile extends FreelancerBase {
+
   function get_profile_info($userid) {
     return $this->lib->getProfileInfo($userid)->getArrayData();
   }
 
-  /* Update user information */
   function set_profile_info($param = array()) {
     return $this->lib->setProfileInfo($param)->getArrayData();
   }
+}
 
-  /* Employer */
+/* Employer class/methods */
+class FreelancerEmployer extends FreelancerBase {
+
   function post_new_project($param = array()) {
     return $this->lib->postNewProject($param)->getArrayData();
   }
@@ -122,6 +158,10 @@ class FreelancerComponent extends Object {
   function elegible_for_trial_project() {
     return $this->lib->elegibleForTrialProject()->getArrayData();
   }
+}
+
+/* Freelancer class/methods */
+class FreelancerFreelancer extends FreelancerBase {
 
   function get_project_list_for_placed_bids($param = array()) {
     return $this->lib->getProjectListForPlacedBids($param)->getArrayData();
@@ -134,6 +174,10 @@ class FreelancerComponent extends Object {
   function retract_bid_from_project($projectid) {
     return $this->lib->retractBidFromProject($projectid)->getArrayData();
   }
+}
+
+/* Common class/methods */
+class FreelancerCommon extends FreelancerBase {
 
   function accept_bid_won($projectid, $state = 1) {
     return $this->lib->acceptBidWon($projectid, $state)->getArrayData();
@@ -162,8 +206,10 @@ class FreelancerComponent extends Object {
   function get_terms() {
     return $this->lib->getTerms()->getArrayData();
   }
+}
 
-  /* Payment methods */
+/* Payment class/methods */
+class FreelancerPayment extends FreelancerBase {
 
   function get_account_balance_status() {
     return $this->lib->getAccountBalanceStatus()->getArrayData();
@@ -224,8 +270,11 @@ class FreelancerComponent extends Object {
   function get_withdrawal_fees() {
     return $this->lib->getWithdrawalFees()->getArrayData();
   }
+}
 
-  /* Notification methods */
+/* Notification class/methods */
+class FreelancerNotification extends FreelancerBase {
+
   function get_notification() {
     return $this->lib->getNotification()->getArrayData();
   }
@@ -233,8 +282,11 @@ class FreelancerComponent extends Object {
   function get_news() {
     return $this->lib->getNews()->getArrayData();
   }
+}
 
-  /* Project methods */
+/* Project class/methods */
+class FreelancerProject extends FreelancerBase {
+
   function search_projects($param = array()) {
     return $this->lib->searchProjects($param)->getArrayData();
   }
@@ -258,8 +310,11 @@ class FreelancerComponent extends Object {
   function post_public_message($param = array()) {
     return $this->lib->postPublicMessage($param)->getArrayData();
   }
+}
 
-  /* Message methods */
+/* Message class/methods */
+class FreelancerMessage extends FreelancerBase {
+
   function get_inbox_messages($param = array()) {
     return $this->lib->getInboxMessages($param)->getArrayData();
   }
