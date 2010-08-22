@@ -36,7 +36,7 @@ class ExampleController extends AppController {
   /* Validate user approved session */
   function _validate() {
     $k = $this->_get_session_keys();
-    
+   
     if (!$k['token'] || !$k['access_key']) {
       return False;
     }
