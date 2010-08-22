@@ -1,6 +1,21 @@
 FreeCake
 ========
 
-FreeCake is a plugin component for CakePHP that provides
-components to interact with Freelancer.com API
+FreeCake is a plugin for CakePHP that provides a CakePHP component  
+to interact with Freelancer.com API.
 
+License
+=======
+FreeCake is lincesed by GPLv3, for more details please refer to the
+included file 'LICENSE'.
+
+Other base libraries as OAuth and SnowTigerLib contains it's own 
+licenses and are distributed here due to license compliance.
+
+About FreeCake
+==============
+Author      : Eduardo Silva <edsiper@gmail.com>
+              http://edsiper.linuxchile.cl
+
+Download    : http://azulnews.com/freecake/download 
+Source code : http://github.com/edsiper/FreeCake
